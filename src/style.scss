@@ -1,0 +1,312 @@
+/* Общие стили */
+* {
+    margin     : 0;
+    padding    : 0;
+    box-sizing : border-box;
+}
+
+/* Шрифты*/
+@font-face {
+    font-family : 'Proxima Nova Condensed';
+    src         : url('../fonts/proximanovacond_regular.ttf');
+}
+
+/* Переменные */
+:root {
+    /* Размеры */
+    --max-width       : 1250px;
+    --font-size-s     : 14px;
+    --font-size-m     : 18px;
+    --font-size-l     : 32px;
+    --font-size-xl    : 24px;
+    --font-size-xxl   : 40px;
+    --font-size-xxxl  : 56px;
+
+    /* Скорость */
+    --fast            : .1s;
+    --slow            : .2s;
+
+    /* Палитра */
+    --red             : #B01736;
+    --gray            : #444;
+    --light-gray      : #D9D9D9;
+    --white           : #FFF;
+    --black           : #000;
+
+    /* Цвета */
+    --bg-main-color   : var(--white);
+    --text-main-color : var(--gray);
+    --border-color    : var(--light-gray);
+    --shadow-color    : var(--black);
+    --link-color      : var(--gray);
+    --primary-color   : var(--red);
+
+    /* Тени */
+    --hard-shadow     : 0px 4px 4px 0px color-mix(in srgb, var(--shadow-color) 25%, transparent);
+    --soft-shadow     : 0px 0px 40px 0px color-mix(in srgb, var(--shadow-color) 6%, transparent);
+}
+
+/* Миксины */
+@mixin section {
+    width     : 100%;
+    max-width : var(--max-width);
+    margin    : auto;
+}
+
+/* Стили */
+.text {
+    font-size   : var(--font-size-m);
+    font-family : "Proxima Nova Condensed", sans-serif;
+
+    &_color {
+        &_main {
+            color : var(--text-main-color);
+        }
+
+        &_primary {
+            color : var(--primary-color);
+        }
+    }
+
+    &_size {
+        &_xxxl {
+            font-size : var(--font-size-xxxl);
+        }
+
+        &_xxl {
+            font-size : var(--font-size-xxl);
+        }
+
+        &_xl {
+            font-size : var(--font-size-xl);
+        }
+
+        &_l {
+            font-size : var(--font-size-l);
+        }
+    }
+
+    &_weight {
+        &_bold {
+            font-weight : bold;
+        }
+
+        &_semibold {
+            font-weight : 600;
+        }
+    }
+
+    &_decoration {
+        &_none {
+            text-decoration : none;
+        }
+    }
+}
+
+.list {
+    display        : flex;
+    flex-direction : column;
+
+    &_style-type {
+        &_none {
+            list-style-type : none;
+        }
+    }
+
+    &_row {
+        flex-direction : row;
+        align-items    : center;
+    }
+
+    &_small {
+        gap : 10px;
+    }
+
+    &_medium {
+        gap : 20px;
+    }
+
+    &_large {
+        gap : 30px;
+    }
+}
+
+.button {
+    cursor : pointer;
+
+    &_invisible {
+        border     : none;
+        background : none;
+    }
+}
+
+.with-marker {
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+
+    &:after {
+        content    : '';
+        transition : var(--slow);
+    }
+
+    &_extend {
+        &:after {
+            background : url('/icons/extend-mark.png');
+        }
+
+        &_opened {
+            &:after {
+                transform : rotate(-180deg);
+            }
+        }
+    }
+
+    &_small {
+        gap : 4px;
+
+        &:after {
+            width  : 12px;
+            height : 12px;
+        }
+    }
+
+    &_medium {
+        gap : 10px;
+
+        &:after {
+            width  : 18px;
+            height : 18px;
+        }
+    }
+
+    &_large {
+        gap : 16px;
+
+        &:after {
+            width  : 24px;
+            height : 24px;
+        }
+    }
+}
+
+.link {
+    color : var(--text-main-color);
+
+    &_active {
+        color         : var(--primary-color);
+        border-bottom : 3px solid var(--primary-color);
+    }
+}
+
+.height {
+    &_full {
+        height : 100%;
+    }
+
+    &_center {
+        display         : flex;
+        align-items     : center;
+        justify-content : center;
+    }
+}
+
+.position {
+    &_relative {
+        position : relative;
+    }
+
+    &_absolute {
+        position : absolute;
+    }
+}
+
+.visible {
+    &_none {
+        visibility : hidden;
+        opacity    : 0;
+    }
+}
+
+.transition {
+    transition : var(--slow);
+    transform  : translateY(0);
+    opacity    : 1;
+    visibility : visible;
+
+    &_hidden {
+        transform  : translateY(-20px);
+        opacity    : 0;
+        visibility : hidden;
+    }
+}
+
+.main-navigation-section {
+    @include section;
+
+    border          : 1px solid var(--border-color);
+    padding         : 30px 37px 30px 70px;
+    display         : flex;
+    flex-direction  : row;
+    align-items     : center;
+    justify-content : space-between;
+
+    &_logo {
+        width  : 125px;
+        height : 25px;
+    }
+}
+
+.softline-header-section {
+    @include section;
+
+    /* Pixel perfect ♥ Что это за 66, 74..*/
+    padding    : 79px 66px 79px 74px;
+    text-align : center;
+
+    > .text_size_xxxl {
+        margin-bottom : 30px;
+    }
+}
+
+.softline-office-section {
+    @include section;
+
+    &_header {
+        background      : var(--bg-main-color);
+        box-shadow      : var(--soft-shadow), var(--hard-shadow);
+        height          : 80px;
+        padding-inline  : 70px;
+        padding-block   : 1px;
+        display         : flex;
+        flex-direction  : row;
+        align-items     : center;
+        justify-content : space-between;
+
+        &_opened {
+
+        }
+
+        &-navigation {
+            opacity    : 1;
+            transition : var(--slow);
+
+            &_hidden {
+                opacity        : .4;
+                pointer-events : none;
+            }
+        }
+    }
+
+    &_bar {
+        top             : calc(100% + 40px);
+        left            : 0;
+        background      : var(--bg-main-color);
+        width           : 100%;
+        display         : flex;
+        justify-content : space-between;
+        gap             : 10px;
+        padding         : 30px 68.5px;
+        box-shadow      : var(--soft-shadow);
+    }
+}
